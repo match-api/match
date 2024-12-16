@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" Generate custom match codes easily with our online tool. Enter team details, logos, and match timings to get the HTML code you need.">
+    <meta name="keywords" content=" match code generator, team match code, generate match code, online match code tool">
+    <meta name="author" content="KaSin TV">
+    <meta property="og:title" content="Match Code Generator">
+    <meta property="og:description" content=" Create and customize match codes with our tool. Input team details and timings to get your match code quickly.">
+    <meta property="og:image" content="https://pc.sandipsitaula2023.com.np/favicon.png">
+    <meta property="og:url" content="https://pc.sandipsitaula2023.com.np/favicon.png">
+    <meta property="og:type" content="website">
+    <script src='https://cdn.jsdelivr.net/gh/kasintv2-0/kasintv/Player/click.js'></script>
+    <title>Match Code Generator - Create Custom Match Codes Online</title>
+    <style>
+       /* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* Form container styling */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields styling */
+input[type="text"],
+input[type="datetime-local"],
+textarea {
+    width: calc(100% - 160px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Custom date input styling */
+input[type="datetime-local"] {
+    padding: 10px 15px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    padding-left: 30px; /* To make room for the calendar icon */
+}
+
+/* Wrapper for buttons */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 10px; /* Adds space between the buttons */
+    margin-top: 20px; /* Adds some space above the buttons */
+}
+
+/* General button styling */
+button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Button to copy code */
+.copy-btn {
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.copy-btn:hover {
+    background-color: #218838;
+}
+
+/* Textarea styling for generated code */
+textarea.Code {
+    height: 150px;
+    resize: vertical;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* Match container styling */
+.containerMatch {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Match section styling */
+.Match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* Team section styling */
+.team {
+    display: flex;
+    align-items: center;
+}
+
+/* Image styling */
+.Image img {
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    margin-right: 10px;
+}
+
+/* Team name styling */
+.name {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Result section styling */
+.result {
+    text-align: center;
+}
+
+/* Match hour styling */
+.matchHour {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Match date styling */
+.matchDate {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Show section styling */
+.Show {
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* Link styling within Show section */
+.Show a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.Show a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Additional adjustments to match the style */
+input, textarea {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: #007bff;
+    background-color: #ffffff;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Generate Match Code</h1>
+    <div class="form-container">
+        <div>
+            <label for="link">Link:</label>
+            <input type="text" id="link" class="link" placeholder="Enter Link">
+        </div>
+        <div>
+            <label for="team1">Team 1:</label>
+            <input type="text" id="team1" class="team1" placeholder="Enter Team 1">
+        </div>
+        <div>
+            <label for="logo1">Team 1 Logo:</label>
+            <input type="text" id="logo1" class="logo1" placeholder="Enter Team 1 Logo URL">
+        </div>
+        <div>
+            <label for="team2">Team 2:</label>
+            <input type="text" id="team2" class="team2" placeholder="Enter Team 2">
+        </div>
+        <div>
+            <label for="logo2">Team 2 Logo:</label>
+            <input type="text" id="logo2" class="logo2" placeholder="Enter Team 2 Logo URL">
+        </div>
+        <div>
+            <label for="matchTime">Match Time:</label>
+            <input type="text" id="matchTime" class="matchTime" placeholder="Enter Match Time">
+        </div>
+        <div>
+            <label for="startDate">Start Date and Time:</label>
+            <input type="datetime-local" id="startDate" class="startDate">
+        </div>
+        <div>
+            <label for="endDate">End Date and Time:</label>
+            <input type="datetime-local" id="endDate" class="endDate">
+        </div>
+        <button class="Get">Generate Match Code</button>
+        <h2>Generated Code:</h2>
+        <textarea class="Code" readonly></textarea>
+        <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+    </div>
+
+    <script type="text/javascript">
+        // Add event listener to the button
+        document.querySelector('button.Get').addEventListener('click', () => {
+            let link = document.querySelector('input.link').value;
+            let team1 = document.querySelector('input.team1').value;
+            let logo1 = document.querySelector('input.logo1').value;
+            let team2 = document.querySelector('input.team2').value;
+            let logo2 = document.querySelector('input.logo2').value;
+            let matchTime = document.querySelector('input.matchTime').value;
+            let startDate = document.querySelector('input.startDate').value;
+            let endDate = document.querySelector('input.endDate').value;
+
+            let all = `<div class="containerMatch">
+    <a href="${link}" title="${team1} VS ${team2}">
+        <div class="Match">
+            <div class="team">
+                <div class="Image">
+                    <img alt="${team1}" class="col-img lazy" height="50" src="${logo1}" data-src="${logo1}" title="${team1}" width="50" />
+                </div>
+                <div class="name">${team1}</div>
+            </div>
+            <div class="result">
+                <div class="matchHour">${matchTime}</div>
+                <div class="score"></div>
+                <div class="matchDate" data-start="${startDate}" data-end="${endDate}"></div>
+            </div>
+            <div class="team">
+                <div class="Image">
+                    <img alt="${team2}" class="col-img lazy" height="50" src="${logo2}" data-src="${logo2}" title="${team2}" width="50" />
+                </div>
+                <div class="name">${team2}</div>
+            </div>
+        </div>
+        <div class="Show"></div>
+    </a>
+</div>`;
+
+            document.querySelector('.Code').value = all;
+        });
+
+        // Copy code function
+        function copyCode() {
+            var code = document.querySelector('.Code');
+            code.select();
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+</html>
