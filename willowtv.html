@@ -1,0 +1,61 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        video {
+            width: 100%;
+            height: auto;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            animation: slidein 2s forwards;
+        }
+        @keyframes slidein {
+            from {
+                margin-top: -50px;
+                opacity: 0;
+            }
+            to {
+                margin-top: 0;
+                opacity: 1;
+            }
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px; /* Adjust size as needed */
+            height: auto;
+      
+    </style>
+</head>
+<body>
+    <div id="jwplayerDiv"></div>
+   
+     <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+    // <script type="text/javascript">
+    //     // Use the PHP configuration directly within the JavaScript
+         var config = {"file":"https://linear-novi.stvacdn.spectrum.com/LIVE/5248/bpk-tv/10364/drm/manifest.mpd","drm":{"clearkey":{"keyId":"475d7932b5f352bb92016b75b60c58fa","key":"ea37faa137ae8f644105c4fcc189a35f"}}}; 
+ 
+        jwplayer("jwplayerDiv").setup({
+          file: config.file,
+            position: 'bottom',
+            autostart: false,
+            stretching: "",
+            width: "100%",
+            height:"80%",
+             drm: {
+                clearkey: {
+                    keyId: config.drm.clearkey.keyId,
+                    key: config.drm.clearkey.key
+                }
+            },
+            type: "dash",
+          
+        });
+    // </script>
+   
+</body>
+</html>
