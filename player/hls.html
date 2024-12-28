@@ -141,7 +141,23 @@
     .colmd{width:40%;float:right;text-align:center;padding:35px 0 35px 0;color:#fff;}
     *[dir="ltr"] .colmd{width:40%;float:left !important;text-align:center;padding:35px 0 35px 0;color:#fff;}
 
-
+/* Refresh Button Style */
+input.MyButton {
+width: 200px;
+padding: 7px;
+cursor: pointer;
+font-weight: bold;
+font-size: 100%;
+background: #0a0647;
+color: #fff;
+border: 1px solid #0a0647;
+border-radius: 10px;
+}
+input.MyButton:hover {
+color: #ff0000;
+background: #000;
+border: 1px solid #fff;
+}
 </style>
 </head>
 
@@ -159,7 +175,7 @@
 <div class='header section' id='header' name='------------'><div class='widget Header' data-version='1' id='Header1'>
 <h1>KaSin TV: Cricket News, Scores & Match Updates</h1>
 <a href='https://www.yosin-tv.net/' title='YoSinTV'>
-<img alt='KaSinTV' class='img-responsive' src='https://iili.io/2O8ocFV.png' title='YoSinTV' width='200'/>
+<img alt='KaSinTV' class='img-responsive' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3hRqqNYGmPvMlJfkGWbIN8c2JsXUULpv9V86efXX8OTFgvEYJS-v3SMjr6hCXJjOJ2EGahbUQP59gysd5jXBT_LgG88v5XiURU7F_UB7miVEfjuvZtlploGULXTscOWGjEUKcA46v5QqP9sADZMZR5Xa9XjfR8PMto-Su1qI9VkkHTBE/s300/KASIN%20TV.png' title='YoSinTV' width='200'/>
 </a>
 </div></div>
 </div>
@@ -182,7 +198,7 @@
 <li class='sites telegram'><a aria-label='telegram' href='https://www.facebook.com/'><span class='icon telegram'></span>
 <span class='titll'></span>
 </a></li>
-<li class='sites youtube'><a aria-label='youtube' href='https://www.youtube.com/channel/UCxlTgCX3au3xsNN_lR-IRug/'><span class='icon youtube'></span>
+<li class='sites youtube'><a aria-label='youtube' href='https://match-api.github.io/match/player/hls.html'><span class='icon youtube'></span>
 <span class='titll'></span>
 </a></li>
 </div>
@@ -199,7 +215,8 @@
 <div class='alert alert-Alert' role='alert'>
 
   
-<a style='display:block;font-size:18px;font-weight:500;text-align:center;border-radius:2px;padding:5px;background:#389ce9;text-decoration:none;color:#fff;' href='https://t.me/yosintvlive' target='_blank' rel="noopener"><svg style='width:30px;height:30px;vertical-align:middle;margin:0px 5px;' viewbox='0 0 21 18'><g fill='none'><path fill='#ffffff' d='M0.554,7.092 L19.117,0.078 C19.737,-0.156 20.429,0.156 20.663,0.776 C20.745,0.994 20.763,1.23 20.713,1.457 L17.513,16.059 C17.351,16.799 16.62,17.268 15.88,17.105 C15.696,17.065 15.523,16.987 15.37,16.877 L8.997,12.271 C8.614,11.994 8.527,11.458 8.805,11.074 C8.835,11.033 8.869,10.994 8.905,10.958 L15.458,4.661 C15.594,4.53 15.598,4.313 15.467,4.176 C15.354,4.059 15.174,4.037 15.036,4.125 L6.104,9.795 C5.575,10.131 4.922,10.207 4.329,10.002 L0.577,8.704 C0.13,8.55 -0.107,8.061 0.047,7.614 C0.131,7.374 0.316,7.182 0.554,7.092 Z'></path></g></svg>Join YoSinTV Telegram </a></div>
+<!--tg-->
+	
   
 </div></div>
 </div>
@@ -228,7 +245,6 @@ Highlights</strong></a>
 <strong>Today</strong>
 </h2>
 </div>
-<div class='recent-wid section' id='match-cricket' name='Cricket Matches'><div class='widget HTML' data-version='2' id='HTML1'>
 <div class='widget-content'>
   
 <!-- contenthere -->
@@ -378,7 +394,7 @@ $(document).ready(function() {$('img#closed').click(function(){$('#bl_banner').h
 </script>
 <div id='fixedban' style='width:100%;margin:auto;text-align:center;float:none;overflow:hidden;display:scroll;position:fixed;bottom:0;z-index:999;-webkit-transform:translateZ(0);'>
 <div>
-<a id='close-fixedban' onclick='document.getElementById("fixedban").style.display = "none";' style='cursor:pointer;'><img alt='close' src='/logo/close.gif' style='vertical-align:middle;' title='close button'/></a>
+<a id='close-fixedban' onclick='document.getElementById("fixedban").style.display = "none";' style='cursor:pointer;'><img alt='close' src='https://github.com/match-api/match/blob/main/logo/close.gif?raw=true' style='vertical-align:middle;' title='close button'/></a>
 </div>
 
 
