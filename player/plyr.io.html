@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,24 +23,36 @@
     </style>
 </head>
 <body>
-    <video id="player" controls></video>
+    <video id="player" controls autoplay></video>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const getUrlParameter = (name) => {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                const results = regex.exec(window.location.search);
+                return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+
+            const videoUrl = getUrlParameter('url');
+
+            if (!videoUrl) {
+                alert('No video URL provided!');
+                return;
+            }
+
             const video = document.getElementById('player');
             const player = new Plyr(video, { captions: { active: true, update: true, language: 'en' } });
-            const videoUrl = '';
 
             if (Hls.isSupported()) {
                 const hls = new Hls();
                 hls.loadSource(videoUrl);
                 hls.attachMedia(video);
                 window.hls = hls;
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = videoUrl;
             } else {
-                player.source = {
-                    type: 'video',
-                    sources: [{ src: videoUrl, type: 'application/vnd.apple.mpegurl' }]
-                };
+                alert('Your browser does not support HLS.');
             }
         });
     </script>
