@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Kanit:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            font-family: 'Comfortaa', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a1a1a;
+        }
+
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .channel-link {
+            color: #ff0000;
+            transition-duration: 0.3s;
+        }
+
+        .channel-link:hover {
+            color: #990000;
+        }
+
+        .channel-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition-duration: 0.3s;
+        }
+
+        .channel-button:hover {
+            background-color: #555;
+        }
+
+        .event-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #eee;
+        }
+
+        .event-row td:first-child {
+            border-bottom: none;
+        }
+
+        .event-row:hover {
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .event-row:hover td {
+            background-color: transparent;
+        }
+
+        .event-row:hover .channel-button-small {
+            background-color: #555;
+        }
+
+		.date-row {
+			background-color: #4a90e2;
+			color: white;
+		}
+		
+		.date-row td,
+		.date-row th {
+		    font-family: 'Kanit', sans-serif;
+			font-size: 24px;
+			font-weight: 800;
+			text-align: center;
+			padding: 16px;
+		}
+
+        .category-row {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .category-row td {
+            font-weight: bold;
+            padding: 12px 16px;
+        }
+
+        .channel-row {
+            background-color: #fff;
+        }
+
+        .channel-button-small {
+            background-color: #2962ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .channel-button-small:hover {
+            background-color: #1565c0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        #timezone-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #timezone {
+            margin: 5px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Comfortaa', sans-serif;
+            width: 20%;
+            min-width: 140px;
+            box-sizing: border-box;
+        }
+
+        #search-box {
+            margin: 5px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            width: 80%;
+            font-family: 'Comfortaa', sans-serif;
+            transition: border-color 0.2s ease;
+        }
+
+        #search-box:focus {
+            outline: none;
+            border-color: #2962ff;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #timezone,
+            #search-box {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media only screen and (min-width: 901px) and (max-width: 1200px) {
+            #timezone {
+                font-size: 14px;
+            }
+            #search-box {
+                width: 50%;
+            }
+        }
+
+        @media only screen and (min-width: 1201px) {
+            #timezone {
+                font-size: 16px;
+            }
+        }
+
+        #timezone option {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .event-row strong {
+            margin-right: 40px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .event-info {
+                display: block;
+                margin-left: 0;
+            }
+        }
+
+        #toggleExtraSchedule, #toggleExtra2Schedule {
+            width: 100%;
+            background-color: #2962ff;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 18px;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #toggleExtraSchedule:hover, #toggleExtra2Schedule:hover {
+            background-color: #1565c0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+
+        .extra-schedule-table-wrapper.visible, .extra2-schedule-table-wrapper.visible {
+            padding: 15px 15px;
+            margin: auto;
+            background-color: white;
+            transition-duration: 0.3s;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+		
+		.extra-schedule-table-wrapper, .extra2-schedule-table-wrapper {
+            display: none;
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .extra-schedule-table-wrapper.visible, .extra2-schedule-table-wrapper.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media only screen and (max-width: 768px) {
+            #timezone-container {
+                flex-direction: column;
+            }
+
+            #timezone, #search-box {
+                width: 100%;
+            }
+
+            .event-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .event-info {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+
+            .event-time {
+                min-width: auto;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<script> const stream_path = ''; </script>
+
+        <div id="timezone-container">
+        <input type="text" id="search-box" placeholder="Search..." oninput="filterTable()">
+        <select id="timezone" onchange="changeTimeZone()">
+            <option value="-12">GMT-12</option>
+            <option value="-11">GMT-11</option>
+            <option value="-10">GMT-10</option>
+            <option value="-9">GMT-9</option>
+            <option value="-8">GMT-8</option>
+            <option value="-7">GMT-7</option>
+            <option value="-6">GMT-6</option>
+            <option value="-5">GMT-5</option>
+            <option value="-4">GMT-4</option>
+            <option value="-3">GMT-3</option>
+            <option value="-2">GMT-2</option>
+            <option value="-1">GMT-1</option>
+            <option value="0" selected>GMT</option>
+            <option value="1">GMT+1</option>
+            <option value="2">GMT+2</option>
+            <option value="3">GMT+3</option>
+            <option value="4">GMT+4</option>
+            <option value="5">GMT+5</option>
+            <option value="6">GMT+6</option>
+            <option value="7">GMT+7</option>
+            <option value="8">GMT+8</option>
+            <option value="9">GMT+9</option>
+            <option value="10">GMT+10</option>
+            <option value="11">GMT+11</option>
+            <option value="12">GMT+12</option>
+        </select>
+    </div>
+
+    <div id="main-schedule-container"></div>
+
+    <button id="toggleExtraSchedule" class="channel-button">Click to view Backup Streams of Soccer & Other Events</button>
+    <div id="extra-schedule-container"></div>
+
+    <button id="toggleExtra2Schedule" class="channel-button">Click to View Extra SD Streams Schedule</button>
+    <div id="extra2-schedule-container"></div>
+
+<script>
+    async function fetchJsonData() {
+        try {
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            const url = 'https://daddylive.mp/schedule/schedule-generated.json';
+            const response = await fetch(corsProxy + url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Origin': window.location.origin,
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const jsonData = await response.json();
+            return jsonData;
+        } catch (error) {
+            console.error('Error fetching schedule data:', error);
+            return {};
+        }
+    }
+
+    async function fetchExtraJsonData() {
+        try {
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            const url = 'https://daddylive.mp/schedule/schedule-extra-generated.json';
+            const response = await fetch(corsProxy + url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Origin': window.location.origin,
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const extraJsonData = await response.json();
+            return extraJsonData;
+        } catch (error) {
+            console.error('Error fetching extra schedule data:', error);
+            return {};
+        }
+    }
+
+    async function fetchextra2JsonData() {
+        try {
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            const url = 'https://daddylive.mp/schedule/extra2-schedule-2.php';
+            const response = await fetch(corsProxy + url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Origin': window.location.origin,
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const extra2JsonData = await response.json();
+            return extra2JsonData;
+        } catch (error) {
+            console.error('Error fetching extra2 schedule data:', error);
+            return {};
+        }
+    }
+
+    function toggleChannels(eventIndex, isExtraSchedule) {
+        const channelsRow = document.getElementById(isExtraSchedule ? `extra-channels-${eventIndex}` : `channels-${eventIndex}`);
+        channelsRow.classList.toggle('hidden');
+
+        if (isExtraSchedule) {
+            const eventRow = document.getElementById(`extra-event-${eventIndex}`);
+            eventRow.classList.toggle('hidden');
+        }
+    }
+
+    function adjustTimezone(time, timezoneOffset) {
+        const [hours, minutes] = time.split(':').map(Number);
+        const date = new Date();
+        date.setUTCHours(hours, minutes, 0, 0);
+        date.setHours(date.getHours() + timezoneOffset);
+        const adjustedHours = date.getUTCHours().toString().padStart(2, '0');
+        const adjustedMinutes = date.getUTCMinutes().toString().padStart(2, '0');
+        return `${adjustedHours}:${adjustedMinutes}`;
+    }
+
+
+    function generateTable(timezoneOffset) {
+        fetchJsonData().then(jsonData => {
+            const contentContainer = document.getElementById('main-schedule-container');
+    
+            for (const day in jsonData) {
+                const dayData = jsonData[day];
+                const table = document.createElement('table');
+    
+                const headerRow = table.insertRow();
+                const headerCell = headerRow.insertCell(0);
+                headerCell.innerHTML = `<strong>${day}</strong>`;
+                headerCell.colSpan = 2;
+                headerRow.classList.add('date-row');
+    
+                for (const category in dayData) {
+                    const events = dayData[category];
+    
+                    const categoryRow = table.insertRow();
+                    const categoryCell = categoryRow.insertCell(0);
+                    categoryCell.innerHTML = `<strong>${category}</strong>`;
+                    categoryCell.colSpan = 2;
+                    categoryRow.classList.add('category-row');
+    
+                    events.forEach((event, index) => {
+                        const row = table.insertRow();
+                        row.classList.add('event-row');
+                        row.addEventListener('click', () => toggleChannels(`${day}-${category}-${index}`, false));
+    
+                        const cell1 = row.insertCell(0);
+                        const adjustedTime = adjustTimezone(event.time, timezoneOffset);
+    
+                        cell1.innerHTML = `<div class="event-time"><strong>${adjustedTime}</strong></div><div class="event-info">${event.event}</div>`;
+                        cell1.colSpan = 2;
+                        cell1.classList.add('event-row');
+    
+                        const channelsRow = table.insertRow();
+                        channelsRow.id = `channels-${day}-${category}-${index}`;
+                        channelsRow.classList.add('hidden');
+                        channelsRow.classList.add('channel-row');
+    
+                        const channelsCell = channelsRow.insertCell(0);
+                        channelsCell.colSpan = 2;
+    
+                        const buttonContainer = document.createElement('div');
+    
+                        if (event.channels) {
+                            const channelsArray = Object.values(event.channels);
+                            channelsArray.forEach((channel, channelIndex) => {
+                                const channelButton = document.createElement('a');
+                                channelButton.className = 'channel-button-small';
+                                channelButton.innerText = `${channel.channel_name} (CH-${channel.channel_id})`;
+                                channelButton.href = `https://thedaddy.to/embed/stream-${channel.channel_id}.php`; // Updated URL
+                                channelButton.target = '_blank';
+                                buttonContainer.appendChild(channelButton);
+                            });
+                        }
+    
+                        if (event.channels2) {
+                            event.channels2.forEach((channel2, channel2Index) => {
+                                const channel2Button = document.createElement('a');
+                                channel2Button.className = 'channel-button-small';
+                                channel2Button.innerText = `${channel2.channel_name}`;
+                                channel2Button.href = `${stream_path}/stream/bet.php?id=bet${channel2.channel_id}`;
+                                channel2Button.target = '_blank';
+                                buttonContainer.appendChild(channel2Button);
+                            });
+                        }
+    
+                        channelsCell.appendChild(buttonContainer);
+                    });
+                }
+    
+                contentContainer.appendChild(table);
+            }
+        });
+    }
+
+    function generateExtraTable(timezoneOffset) {
+        fetchExtraJsonData().then(extraJsonData => {
+            const extraScheduleContainer = document.getElementById('extra-schedule-container');
+            extraScheduleContainer.innerHTML = ''; // Clear existing content
+
+            const extraScheduleWrapper = document.createElement('div');
+            extraScheduleWrapper.className = 'extra-schedule-table-wrapper';
+            extraScheduleWrapper.id = 'extra-schedule-table';
+            extraScheduleWrapper.classList.add('hidden');
+
+            for (const day in extraJsonData) {
+                const dayData = extraJsonData[day];
+                const table = document.createElement('table');
+
+                const headerRow = table.insertRow();
+                const headerCell = headerRow.insertCell(0);
+                headerCell.innerHTML = `<strong>${day}</strong>`;
+                headerCell.colSpan = 2;
+                headerRow.classList.add('date-row');
+
+                for (const category in dayData) {
+                    const events = dayData[category];
+
+                    const categoryRow = table.insertRow();
+                    const categoryCell = categoryRow.insertCell(0);
+                    categoryCell.innerHTML = `<strong>${category}</strong>`;
+                    categoryCell.colSpan = 2;
+                    categoryRow.classList.add('category-row');
+
+                    events.forEach((event, index) => {
+                        const row = table.insertRow();
+                        row.classList.add('event-row');
+                        row.addEventListener('click', () => toggleChannels(`${day}-${category}-${index}`, true));
+
+                        const cell1 = row.insertCell(0);
+                        const adjustedTime = adjustTimezone(event.time, timezoneOffset);
+
+                        cell1.innerHTML = `<div class="event-time"><strong>${adjustedTime}</strong></div><div class="event-info">${event.event}</div>`;
+                        cell1.colSpan = 2;
+                        cell1.classList.add('event-row');
+
+                        const channelsRow = table.insertRow();
+                        channelsRow.id = `extra-channels-${day}-${category}-${index}`;
+                        channelsRow.classList.add('hidden');
+                        channelsRow.classList.add('channel-row');
+
+                        const channelsCell = channelsRow.insertCell(0);
+                        channelsCell.colSpan = 2;
+
+                        const buttonContainer = document.createElement('div');
+
+                        event.channels.forEach((channel, channelIndex) => {
+							const channelButton = document.createElement('a');
+							channelButton.className = 'channel-button-small';
+							channelButton.innerText = `${channel.channel_name} (CH-${channel.channel_id})`;
+							channelButton.href = `https://thedaddy.to/embed/stream-${channel.channel_id}.php`; // Updated URL
+							channelButton.target = '_blank';
+							buttonContainer.appendChild(channelButton);
+						});
+
+                        channelsCell.appendChild(buttonContainer);
+                    });
+                }
+
+                extraScheduleWrapper.appendChild(table);
+            }
+
+            extraScheduleContainer.appendChild(extraScheduleWrapper);
+        });
+    }
+
+    function generateExtra2Table(timezoneOffset) {
+        fetchextra2JsonData().then(extra2JsonData => {
+            const Extra2ScheduleContainer = document.getElementById('extra2-schedule-container');
+            Extra2ScheduleContainer.innerHTML = ''; // Clear existing content
+
+            const Extra2ScheduleWrapper = document.createElement('div');
+            Extra2ScheduleWrapper.className = 'extra2-schedule-table-wrapper';
+            Extra2ScheduleWrapper.id = 'extra2-schedule-table';
+            Extra2ScheduleWrapper.classList.add('hidden');
+
+            for (const day in extra2JsonData) {
+                const dayData = extra2JsonData[day];
+                const table = document.createElement('table');
+
+                const headerRow = table.insertRow();
+                const headerCell = headerRow.insertCell(0);
+                headerCell.innerHTML = `<strong>${day}</strong>`;
+                headerCell.colSpan = 2;
+                headerRow.classList.add('date-row');
+
+                for (const category in dayData) {
+                    const events = dayData[category];
+
+                    const categoryRow = table.insertRow();
+                    const categoryCell = categoryRow.insertCell(0);
+                    categoryCell.innerHTML = `<strong>${category}</strong>`;
+                    categoryCell.colSpan = 2;
+                    categoryRow.classList.add('category-row');
+
+                    events.forEach((event, index) => {
+                        const row = table.insertRow();
+                        row.classList.add('event-row');
+                        row.addEventListener('click', () => toggleChannels(`${day}-${category}-${index}`, false));
+
+                        const cell1 = row.insertCell(0);
+                        const adjustedTime = adjustTimezone(event.time, timezoneOffset);
+
+                        cell1.innerHTML = `<div class="event-time"><strong>${adjustedTime}</strong></div><div class="event-info">${event.event}</div>`;
+                        cell1.colSpan = 2;
+                        cell1.classList.add('event-row');
+
+                        const channelsRow = table.insertRow();
+                        channelsRow.id = `channels-${day}-${category}-${index}`;
+                        channelsRow.classList.add('hidden');
+                        channelsRow.classList.add('channel-row');
+
+                        const channelsCell = channelsRow.insertCell(0);
+                        channelsCell.colSpan = 2;
+
+                        const buttonContainer = document.createElement('div');
+
+                        event.channels.forEach((channel, channelIndex) => {
+							const channelButton = document.createElement('a');
+							channelButton.className = 'channel-button-small';
+							channelButton.innerText = `${channel.channel_name}`;
+							channelButton.href = `https://thedaddy.to/embed/stream-${channel.channel_id}.php`; // Updated URL
+							channelButton.target = '_blank';
+							buttonContainer.appendChild(channelButton);
+						});
+
+                        channelsCell.appendChild(buttonContainer);
+                    });
+                }
+
+                Extra2ScheduleWrapper.appendChild(table);
+            }
+
+            Extra2ScheduleContainer.appendChild(Extra2ScheduleWrapper);
+        });
+    }
+
+    function toggleExtraScheduleVisibility() {
+        const extraScheduleWrapper = document.getElementById('extra-schedule-table');
+        extraScheduleWrapper.classList.toggle('hidden');
+        extraScheduleWrapper.classList.toggle('visible');
+    }
+
+    function toggleExtra2ScheduleVisibility() {
+        const Extra2ScheduleWrapper = document.getElementById('extra2-schedule-table');
+        Extra2ScheduleWrapper.classList.toggle('hidden');
+        Extra2ScheduleWrapper.classList.toggle('visible');
+    }
+
+    document.getElementById('toggleExtraSchedule').addEventListener('click', toggleExtraScheduleVisibility);
+    document.getElementById('toggleExtra2Schedule').addEventListener('click', toggleExtra2ScheduleVisibility);
+
+    function changeTimeZone() {
+        const selectedTimeZone = parseInt(document.getElementById('timezone').value);
+        const mainScheduleContainer = document.getElementById('main-schedule-container');
+        const extraScheduleWrapper = document.getElementById('extra-schedule-table');
+        const Extra2ScheduleWrapper = document.getElementById('extra2-schedule-table');
+    
+        mainScheduleContainer.innerHTML = '';
+        extraScheduleWrapper.innerHTML = '';
+        Extra2ScheduleWrapper.innerHTML = '';
+    
+        generateTable(selectedTimeZone);
+        generateExtraTable(selectedTimeZone);
+        generateExtra2Table(selectedTimeZone);
+    }
+
+
+    function filterTable() {
+        const searchTerm = document.getElementById('search-box').value.toLowerCase();
+        const eventRows = document.querySelectorAll('.event-row');
+
+        eventRows.forEach(row => {
+            const eventText = row.textContent.toLowerCase();
+            row.style.display = eventText.includes(searchTerm) ? '' : 'none';
+        });
+    }
+
+    generateExtraTable(0);
+    generateTable(0);
+    generateExtra2Table(0);
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
