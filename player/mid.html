@@ -54,7 +54,7 @@
       <body style="margin: 0; overflow: hidden;">
           <div id="player-container" allowfullscreen='true' >
               </div>
-                 <iframe id="video-iframe" src="https://player.rosieworld.net/detail.html?=${id}&type=1&pid=7&isTips=0&isLogin=1&sbtcolor="allowfullscreen='true'></iframe>
+                 <iframe id="video-iframe" allowfullscreen="true"></iframe>
 
              
               
@@ -69,7 +69,13 @@
               const updateIframeSrc = () => {
                   const id = getIdFromUrl();
                   const videoIframe = document.getElementById('video-iframe');
-                  videoIframe.src = `https://player.huminbird.cn/detail.html?mid=${id}&type=1&pid=7&isTips=0&isLogin=1&sbtcolor=`;
+                  
+                  if (id) {
+                      // Format the URL with all required parameters
+                      videoIframe.src = `https://player.rosieworld.net/detail.html?v=${id}&mid=${id}&type=1&pid=4&isTips=1&isLogin=0&sbtcolor=27c5c3&pfont=65px&apiEnv=prod&host=kzb001.net`;
+                  } else {
+                      console.error('No ID parameter found in URL');
+                  }
               };
       
               //=================================================================================================//
